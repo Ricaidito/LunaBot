@@ -7,10 +7,12 @@ module.exports = {
   async execute(interaction, client) {
     await interaction.deferReply({
       fetchReply: true,
+      ephemeral: true,
     });
     const newMessage = "Pong!";
     await interaction.editReply({
       content: newMessage,
+      ephemeral: true,
     });
   },
 };
