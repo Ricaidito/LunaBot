@@ -21,16 +21,26 @@ module.exports = client => {
     }
 
     const rest = new REST({ version: "10" }).setToken(process.env.TOKEN);
+
+    // To register commands only in the development server
+    // rest
+    //   .put(
+    //     Routes.applicationGuildCommands(
+    //       process.env.CLIENT_ID,
+    //       process.env.GUILD_ID
+    //     ),
+    //     {
+    //       body: client.commandArray,
+    //     }
+    //   )
+    //   .then(() => console.log("Loaded all slash commands..."))
+    //   .catch(error => console.error(error));
+
+    // To register commands globally
     rest
-      .put(
-        Routes.applicationGuildCommands(
-          process.env.CLIENT_ID,
-          process.env.GUILD_ID
-        ),
-        {
-          body: client.commandArray,
-        }
-      )
+      .put(Routes.applicationCommands(process.env.CLIENT_ID), {
+        body: client.commandArray,
+      })
       .then(() => console.log("Loaded all slash commands..."))
       .catch(error => console.error(error));
   };
