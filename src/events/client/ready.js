@@ -1,7 +1,10 @@
+const { dev } = require("../../../config.json");
+
 module.exports = {
   name: "ready",
   once: true,
   async execute(client) {
-    console.log(`>>> ${client.user.tag} up and running! <<<`);
+    if (dev) console.log(">>> DEV INSTANCE <<<");
+    else console.log(`>>> ${client.user.tag} up and running! <<<`);
   },
 };
