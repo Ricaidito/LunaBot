@@ -19,6 +19,10 @@ module.exports = {
           name: "`/luna`",
           value: "Get a random picture of Luna",
         },
+        {
+          name: "`/avatar <user>`",
+          value: "Get your avatar or the avatar of the specified user",
+        },
       ]);
 
     await interaction.reply({
