@@ -18,9 +18,16 @@ module.exports = client => {
         text: "cat videos :p",
         status: "online",
       },
+      {
+        type: ActivityType.Playing,
+        text: "with bubbles 🫧",
+        status: "online",
+      },
     ];
     const randomOption =
       presenceOptions[Math.floor(Math.random() * presenceOptions.length)];
+
+    // const randomOption = presenceOptions[4];
 
     client.user.setPresence({
       activities: [
