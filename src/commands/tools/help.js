@@ -12,6 +12,10 @@ module.exports = {
       .setThumbnail(client.user.displayAvatarURL())
       .addFields([
         {
+          name: "`/invite`",
+          value: "Get an invitation link of Luna",
+        },
+        {
           name: "`/ping`",
           value: "Luna replies with **Pong!**",
         },
@@ -22,6 +26,18 @@ module.exports = {
         {
           name: "`/avatar <user>`",
           value: "Get your avatar or the avatar of the specified user",
+        },
+        {
+          name: "`/reminders`",
+          value: "Get your reminders",
+        },
+        {
+          name: "`/reminder <reminder>`",
+          value: "Add a reminder to your reminders list",
+        },
+        {
+          name: "`/reminder-remove <reminder_id>`",
+          value: "Removes the reminder with the specified `reminder_id`",
         },
       ]);
 
