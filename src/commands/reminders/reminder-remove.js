@@ -1,5 +1,9 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
-const { removeReminder } = require("../../utils/reminders");
+const {
+  removeReminder,
+  checkIfExists,
+  isMongoIdValid,
+} = require("../../utils/reminders");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -16,11 +20,15 @@ module.exports = {
 
     const userId = interaction.user.id;
     const reminderId = interaction.options.getString("reminder_id");
-    console.log(reminderId);
 
     try {
-      await removeReminder(reminderId, userId);
-      embed.setDescription(`Reminder \`${reminderId}\` has been deleted!`);
+      if (
+        isMongoIdValid(reminderId) &&
+        (await checkIfExists(reminderId, userId))
+      ) {
+        await removeReminder(reminderId, userId);
+        embed.setDescription(`Reminder \`${reminderId}\` has been deleted!`);
+      } else embed.setDescription("**ERROR**: Ivalid reminder ID");
     } catch (error) {
       console.log(error);
       embed.setDescription(
